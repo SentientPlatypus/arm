@@ -34,7 +34,7 @@
   </link>
 
   <!-- Joint connecting Base to Rotating Cylinder -->
-  <joint name="rotating_joint" type="continuous">
+  <joint name="rotating_joint" type="revolute">
     <parent link="base_link"/>
     <child link="rotating_link"/>
 
