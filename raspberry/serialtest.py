@@ -5,13 +5,23 @@ import sys
 def send_serial_message(message):
     try:
         # Open the serial port
-        ser = serial.Serial('/dev/serial0', 9600, timeout=1)
+        ser = serial.Serial(
+            port='/dev/serial0',   # Use '/dev/ttyAMA0' or '/dev/ttyS0' if '/dev/serial0' doesn't work
+            baudrate=9600,
+            parity=serial.PARITY_NONE,
+            stopbits=serial.STOPBITS_ONE,
+            bytesize=serial.EIGHTBITS,
+            timeout=1
+        )
         time.sleep(2)  # Wait for the serial connection to initialize
 
         # Send the message
         ser.write(message.encode())
 
-        # Read the response (optional)
+        # Give the device some time to respond
+        time.sleep(1)
+
+        # Read the response (if any)
         response = ser.readline().decode().strip()
         print("Response:", response)
 
