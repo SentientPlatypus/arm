@@ -29,8 +29,12 @@ def send_serial_message(message):
         ser.close()
     except serial.SerialException as e:
         print("Error:", e)
+# Example usage: Set servo 1 to position 1500 with a time of 1000ms
+def set_servo_position(servo_id, position, time_ms):
+    command = bytearray([0x55, 0x55, 0x08, 0x03, 0x01, 0x01, servo_id, position & 0xFF, (position >> 8) & 0xFF, time_ms & 0xFF, (time_ms >> 8) & 0xFF])
+    send_serial_message(command)
 
-# Example usage
+
 
 
 if __name__ == "__main__":
@@ -38,3 +42,6 @@ if __name__ == "__main__":
     message = " ".join(sys.argv[1:])
     print(message)
     send_serial_message(message)
+    # Set servo 1 to position 1500 with a time of 1000ms
+    set_servo_position(1, 1000, 1000)
+    # Example usage
