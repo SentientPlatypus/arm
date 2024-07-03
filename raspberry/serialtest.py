@@ -1,5 +1,6 @@
 import serial
 import time
+import sys
 
 def send_serial_message(message):
     try:
@@ -20,5 +21,10 @@ def send_serial_message(message):
         print("Error:", e)
 
 # Example usage
-message = '#1 P1000'
-send_serial_message(message)
+
+
+if __name__ == "__main__":
+
+    message = " ".join(sys.argv[1:])
+    print(message)
+    send_serial_message(message)
