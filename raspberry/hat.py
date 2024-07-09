@@ -87,8 +87,8 @@ if __name__=='__main__':
   pwm = PCA9685(0x40, debug=False)
   pwm.setPWMFreq(50)
 
-  channel, pulse_width = sys.argv[1:]
+  channel, pulse_width = list(map(int, sys.argv[1:]))
 
-  print("moving servo at channel %d with pulse %d" %(channel, pulse_width))
+  print(f"moving servo at channel {channel} with pulse {pulse_width}")
   pwm.setServoPulse(channel, pulse_width)
 
