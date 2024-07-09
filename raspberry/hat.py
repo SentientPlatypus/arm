@@ -89,6 +89,6 @@ if __name__=='__main__':
 
   channel, pulse_width = sys.argv[1:]
 
-  print(f"moving servo at channel {channel} with pulse {pulse_width}")
+  print("moving servo at channel %d with pulse %d" %(channel, pulse_width))
   pwm.setServoPulse(channel, pulse_width)
 
