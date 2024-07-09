@@ -82,13 +82,24 @@ class PCA9685:
     pulse = pulse*4096/20000        #PWM frequency is 50HZ,the period is 20000us
     self.setPWM(channel, 0, int(pulse))
 
+  def turnOffAllPWM(self):
+      "Turns off all PWM channels"
+      for channel in range(16):
+          self.setPWM(channel, 0, 0)
+      if self.debug:
+          print("Turned off all PWM channels")
+
 if __name__=='__main__':
   """python main.py 0 1500"""
-  pwm = PCA9685(0x40, debug=False)
-  pwm.setPWMFreq(50)
+  hat = PCA9685(0x40, debug=False)
+  hat.setPWMFreq(50)
 
-  channel, pulse_width = list(map(int, sys.argv[1:]))
+  if sys.argv[1] == "off":
+    hat.turnOffAllPWM()
+  else:
+    channel, pulse_width = list(map(int, sys.argv[1:]))
 
-  print(f"moving servo at channel {channel} with pulse {pulse_width}")
-  pwm.setServoPulse(channel, pulse_width)
+    print(f"moving servo at channel {channel} with pulse {pulse_width}")
+    hat.setServoPulse(channel, pulse_width)
+  
 
