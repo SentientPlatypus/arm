@@ -88,6 +88,17 @@ class PCA9685:
           self.setPWM(channel, 0, 0)
       if self.debug:
           print("Turned off all PWM channels")
+  
+  def moveServos(self, servo_positions):
+    """
+    Move multiple servos at once.
+    
+    :param servo_positions: Dictionary where keys are servo channels and values are pulse widths
+    """
+    for channel, pulse in servo_positions.items():
+      self.setServoPulse(channel, pulse)
+    if self.debug:
+      print(f"Moved servos to positions: {servo_positions}")
 
 if __name__=='__main__':
   """python main.py 0 1500"""
