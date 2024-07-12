@@ -56,7 +56,7 @@ class ArmController:
         self.update_plot(target_position)
         print(valuedict)
         pwm_map = {}
-        for i in range(6):
+        for i in range(5):
             if i in [2]:
                 pwm_map[i] = self.servo_controller.degrees_to_pwm(valuedict[i], degreelimits=(-360, 0))
             else:
