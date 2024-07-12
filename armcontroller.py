@@ -54,7 +54,7 @@ class ArmController:
         target_orientation = [1, 1, 0]
         valuedict = self.arm_kinematics.inverse_kinematics(target_position, target_orientation)
         self.update_plot(target_position)
-
+        print(valuedict)
         pwm_map = {}
         for i in range(6):
             if i in [2]:
