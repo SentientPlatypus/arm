@@ -108,7 +108,7 @@ if __name__=='__main__':
   if sys.argv[1] == "off":
     hat.turnOffAllPWM()
   else:
-    args = list(map(int, sys.argv))
+    args = list(map(int, sys.argv[1:]))
     # Create a dictionary from the arguments
     arg_dict = {args[i]: args[i+1] for i in range(0, len(args), 2)}
 
