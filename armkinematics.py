@@ -1,6 +1,11 @@
+import math
+import ikpy.chain as ik
+import numpy as np
+import time
+
 class ArmKinematics:
     def __init__(self, urdf_file, active_links_mask):
-        self.chain = ikpy.chain.Chain.from_urdf_file(urdf_file, active_links_mask=active_links_mask)
+        self.chain = ik.Chain.from_urdf_file(urdf_file, active_links_mask=active_links_mask)
         self.ik = np.zeros(len(self.chain.links))
 
     def inverse_kinematics(self, target_position, target_orientation):
