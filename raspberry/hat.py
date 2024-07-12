@@ -108,9 +108,10 @@ if __name__=='__main__':
   if sys.argv[1] == "off":
     hat.turnOffAllPWM()
   else:
-    channel, pulse_width = list(map(int, sys.argv[1:]))
+    args = list(map(int, sys.argv))
+    # Create a dictionary from the arguments
+    arg_dict = {args[i]: args[i+1] for i in range(0, len(args), 2)}
 
-    print(f"moving servo at channel {channel} with pulse {pulse_width}")
-    hat.setServoPulse(channel, pulse_width)
+    hat.moveServos(arg_dict)
   
 
