@@ -4,10 +4,12 @@ from armkinematics import ArmKinematics
 from servocontroller import ServoController
 
 class ArmController:
-    def __init__(self, urdf_file, active_links_mask, pwm_freq=50):
+    def __init__(self, urdf_file, active_links_mask, pwm_freq=50, show_plot=True):
         self.servo_controller = ServoController(pwm_freq)
         self.arm_kinematics = ArmKinematics(urdf_file, active_links_mask)
-        self.fig, self.ax = self.init_3d_plot()
+        self.show_plot = show_plot
+        if self.show_plot:
+            self.fig, self.ax = self.init_3d_plot()
 
     @staticmethod
     def init_3d_plot():
@@ -17,6 +19,8 @@ class ArmController:
         return fig, ax
 
     def update_plot(self, target_position):
+        if not self.show_plot:
+            return
         self.ax.clear()
         self.arm_kinematics.plot_chain(self.ax, target_position)
         plt.xlim(-0.5, 0.5)
@@ -41,6 +45,6 @@ class ArmController:
         self.servo_controller.move_servos(pwm_map)
 
 if __name__ == "__main__":
-    arm_controller = ArmController("arm.urdf", active_links_mask=[False, True, True, True, True, True])
+    arm_controller = ArmController("arm.urdf", active_links_mask=[False, True, True, True, True, True], show_plot=False)
     arm_controller.move(3, 0, 3)
-    plt.ion()
+    
