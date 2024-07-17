@@ -52,13 +52,13 @@
     <visual>
       <origin xyz="0 0 3" rpy="0 0 0"/> <!-- Offset from rotating_link -->
       <geometry>
-        <box size="3 1 6"/> <!-- Example dimensions for visualization -->
+        <box size="3 1 5.75"/> <!-- Example dimensions for visualization -->
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 3" rpy="0 0 0"/>
       <geometry>
-        <box size="3 1 6"/> <!-- Example dimensions for collision -->
+        <box size="3 1 5.75"/> <!-- Example dimensions for collision -->
       </geometry>
     </collision>
   </link>
@@ -77,13 +77,13 @@
     <visual>
       <origin xyz="0 0 3.75" rpy="0 0 0"/> <!-- Offset from shoulder_link -->
       <geometry>
-        <box size="3 1 7.5"/> <!-- Example dimensions for visualization -->
+        <box size="3 1 7.375"/> <!-- Example dimensions for visualization -->
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 3.75" rpy="0 0 0"/>
       <geometry>
-        <box size="3 1 7.5"/> <!-- Example dimensions for collision -->
+        <box size="3 1 7.375"/> <!-- Example dimensions for collision -->
       </geometry>
     </collision>
   </link>
@@ -92,7 +92,7 @@
   <joint name="elbow_joint" type="revolute">
     <parent link="shoulder_link"/>
     <child link="elbow_link"/>
-    <origin xyz="0 0 6" rpy="0 0 0"/> <!-- Offset along shoulder_link -->
+    <origin xyz="0 0 5.75" rpy="0 0 0"/> <!-- Offset along shoulder_link -->
     <axis xyz="1 0 0"/>
     <limit lower="-3.14" upper="0" effort="10" velocity="1.57"/>
   </joint>
@@ -101,13 +101,13 @@
     <visual>
       <origin xyz="0 0 1" rpy="0 0 0"/> <!-- Offset from shoulder_link -->
       <geometry>
-        <box size="2 1 2"/> <!-- Example dimensions for visualization -->
+        <box size="2 1 2.5"/> <!-- Example dimensions for visualization -->
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 1" rpy="0 0 0"/>
       <geometry>
-        <box size="2 1 2"/> <!-- Example dimensions for collision -->
+        <box size="2 1 2.5"/> <!-- Example dimensions for collision -->
       </geometry>
     </collision>
   </link>
@@ -115,7 +115,7 @@
   <joint name="wristp_joint" type="revolute">
     <parent link="elbow_link"/>
     <child link="wristp_link"/>
-    <origin xyz="0 0 7.5" rpy="0 0 0"/> <!-- Offset along shoulder_link -->
+    <origin xyz="0 0 7.375" rpy="0 0 0"/> <!-- Offset along shoulder_link -->
     <axis xyz="1 0 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1.57"/>
   </joint>
@@ -124,13 +124,13 @@
     <visual>
       <origin xyz="0 0 .5" rpy="0 0 0"/> <!-- Offset from shoulder_link -->
       <geometry>
-        <box size="1.25 .75 1"/> <!-- Example dimensions for visualization -->
+        <box size="1.25 .75 2"/> <!-- Example dimensions for visualization -->
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 .5" rpy="0 0 0"/>
       <geometry>
-        <box size="1.25 .75 1"/> <!-- Example dimensions for collision -->
+        <box size="1.25 .75 2"/> <!-- Example dimensions for collision -->
       </geometry>
     </collision>
   </link>
