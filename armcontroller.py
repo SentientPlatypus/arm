@@ -4,6 +4,7 @@ import ikpy.chain as ik
 import numpy as np
 import matplotlib.pyplot as plt
 from servocontroller import ServoController
+import time
 
 
 class ArmKinematics:
@@ -54,16 +55,18 @@ class ArmController:
         target_orientation = [1, 1, 0]
         valuedict = self.arm_kinematics.inverse_kinematics(target_position, target_orientation)
         self.update_plot(target_position)
-        print(valuedict)
         pwm_map = {}
         for i in range(5):
             if i in [2]:
-                pwm_map[i] = self.servo_controller.degrees_to_pwm(valuedict[i], degreelimits=(-360, 0))
+                pwm_map[i] = self.servo_controller.degrees_to_pwm(valuedict[i], degreelimits=(-180, 0))
             else:
                 pwm_map[i] = self.servo_controller.degrees_to_pwm(valuedict[i])
-
+        print(pwm_map)
         self.servo_controller.move_servos(pwm_map)
 
 if __name__ == "__main__":
     arm_controller = ArmController("arm.urdf", active_links_mask=[False, True, True, True, True, True], show_plot=False)
-    arm_controller.move(5, 0, 2)
+    
+    for i in range(2,8):
+        arm_controller.move(5, 0, i)
+        time.sleep(1)
