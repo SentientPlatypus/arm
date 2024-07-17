@@ -52,7 +52,7 @@ class ArmController:
     def move(self, x, y, z):
         target_position = [x, y, z]
         target_orientation = [1, 1, 0]
-        valuedict = self.arm_kinematics.inverse_kinematics(target_position, target_orientation)
+        valuedict = self.arm_kinematics.inverse_kinematics(target_position, target_orientation, orientation_mode = "Y")
         self.update_plot(target_position)
         print(valuedict)
         pwm_map = {}
@@ -66,4 +66,4 @@ class ArmController:
 
 if __name__ == "__main__":
     arm_controller = ArmController("arm.urdf", active_links_mask=[False, True, True, True, True, True], show_plot=False)
-    arm_controller.move(3, 0, 3)
+    arm_controller.move(5, 0, 2)
