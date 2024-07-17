@@ -55,15 +55,29 @@ class ArmController:
         target_orientation = [1, 1, 0]
         valuedict = self.arm_kinematics.inverse_kinematics(target_position, target_orientation)
         self.update_plot(target_position)
+        
+        # Define the limits for each servo
+        servo_limits = {
+            0: {'degreelimits': (0, 190), 'pwmlimits': (553, 2425)},
+            1: {'degreelimits': (0, 180), 'pwmlimits': (553, 2455)},
+            2: {'degreelimits': (-180, 0), 'pwmlimits': (553, 2655)},
+            3: {'degreelimits': (-108, 90), 'pwmlimits': (553, 2520)},
+            4: {'degreelimits': (0, 180), 'pwmlimits': (500, 2500)},
+            5: {'degreelimits': (0, 180), 'pwmlimits': (500, 2500)},
+        }
+
         pwm_map = {}
-        for i in range(5):
-            if i in [2]:
-                pwm_map[i] = self.servo_controller.degrees_to_pwm(valuedict[i], degreelimits=(-180, 0))
-            else:
-                pwm_map[i] = self.servo_controller.degrees_to_pwm(valuedict[i])
+        for i in range(6):  # Assuming there are 6 servos
+            limits = servo_limits.get(i)
+            pwm_map[i] = self.servo_controller.degrees_to_pwm(
+                valuedict[i],
+                degreelimits=limits['degreelimits'],
+                pwmlimits=limits['pwmlimits'],
+                invert=(i == 2)
+            )
+
         print(pwm_map)
         self.servo_controller.move_servos(pwm_map)
-
 if __name__ == "__main__":
     arm_controller = ArmController("arm.urdf", active_links_mask=[False, True, True, True, True, True], show_plot=False)
     
