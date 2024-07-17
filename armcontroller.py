@@ -13,7 +13,7 @@ class ArmKinematics:
 
     def inverse_kinematics(self, target_position, target_orientation):
         old_position = self.ik.copy()
-        self.ik = self.chain.inverse_kinematics(target_position, target_orientation, orientation_mode="Z", initial_position=old_position)
+        self.ik = self.chain.inverse_kinematics(target_position, target_orientation, orientation_mode="Y", initial_position=old_position)
         value_dict = {index: math.degrees(value) for index, value in enumerate(self.ik.tolist()[1:])}
         return value_dict
 
@@ -52,7 +52,7 @@ class ArmController:
     def move(self, x, y, z):
         target_position = [x, y, z]
         target_orientation = [1, 1, 0]
-        valuedict = self.arm_kinematics.inverse_kinematics(target_position, target_orientation, orientation_mode = "Y")
+        valuedict = self.arm_kinematics.inverse_kinematics(target_position, target_orientation)
         self.update_plot(target_position)
         print(valuedict)
         pwm_map = {}
