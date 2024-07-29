@@ -6,9 +6,9 @@ class ServoController:
         self.hat.setPWMFreq(pwm_freq)
 
     @staticmethod
-    def degrees_to_pwm(degrees, degreelimits=(-180, 180), pwmlimit=(500, 2500), invert=False):
+    def degrees_to_pwm(degrees, degreelimits=(-180, 180), pwmlimits=(500, 2500), invert=False):
         min_degree, max_degree = degreelimits
-        min_pwm, max_pwm = pwmlimit
+        min_pwm, max_pwm = pwmlimits
 
         if degrees < min_degree or degrees > max_degree:
             raise ValueError(f"Degrees value {degrees} is out of range ({min_degree}, {max_degree})")
