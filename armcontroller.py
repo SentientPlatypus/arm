@@ -59,7 +59,7 @@ class ArmController:
         # Define the limits for each servo
         servo_limits = {
             0: {'degreelimits': (-90, 90), 'pwmlimits': (553, 2425)},
-            1: {'degreelimits': (-90, 90), 'pwmlimits': (553, 2455)},
+            1: {'degreelimits': (-115, 90), 'pwmlimits': (553, 2455)},
             2: {'degreelimits': (-180, 0), 'pwmlimits': (553, 2655)},
             3: {'degreelimits': (-108, 90), 'pwmlimits': (553, 2520)},
             4: {'degreelimits': (-90, 90), 'pwmlimits': (500, 2500)},
